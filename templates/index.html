@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="layout">
+    <section class="card game">
+      <h1>Guess the number</h1>
+
+      <form id="setup" class="setup">
+        <label>Your name
+          <input id="player" maxlength="20" placeholder="e.g. Avani" autocomplete="off">
+        </label>
+        <fieldset>
+          <legend>Difficulty</legend>
+          <label class="pill"><input type="radio" name="level" value="easy"><span>Easy<small>1–50 · 8 tries</small></span></label>
+          <label class="pill"><input type="radio" name="level" value="medium" checked><span>Medium<small>1–100 · 7 tries</small></span></label>
+          <label class="pill"><input type="radio" name="level" value="hard"><span>Hard<small>1–500 · 9 tries</small></span></label>
+        </fieldset>
+        <button class="primary" type="submit">Start game</button>
+      </form>
+
+      <div id="play" hidden>
+        <div class="range" aria-label="Possible range">
+          <span id="lo">1</span>
+          <div class="track"><div id="fill" class="fill"></div></div>
+          <span id="hi">100</span>
+        </div>
+        <p id="msg" class="msg" aria-live="polite"></p>
+        <form id="guessForm" class="guess-row">
+          <input id="guess" type="number" inputmode="numeric" placeholder="Your guess" required>
+          <button class="primary" type="submit">Guess</button>
+        </form>
+        <div id="dots" class="dots" aria-label="Attempts left"></div>
+        <ul id="log" class="log"></ul>
+        <button id="again" class="secondary" hidden>Play again</button>
+      </div>
+    </section>
+
+    <aside class="card board">
+      <h2>Best scores</h2>
+      <p id="stats" class="muted"></p>
+      <ol id="scores"></ol>
+      <p id="noScores" class="muted">No wins yet. Be the first on the board.</p>
+    </aside>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
